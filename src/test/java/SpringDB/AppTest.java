@@ -1,4 +1,4 @@
-package SpringAOP;
+package SpringDB;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

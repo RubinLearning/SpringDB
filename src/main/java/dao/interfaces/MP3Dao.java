@@ -2,13 +2,16 @@ package dao.interfaces;
 
 import dao.objects.MP3;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface MP3Dao {
 
     void insert(MP3 mp3);
 
-    void delete(MP3 mp3);
+    void insert(Collection<MP3> mp3Collection);
+
+    void delete(int id);
 
     MP3 getMP3ByID(int id);
 

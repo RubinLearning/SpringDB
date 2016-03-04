@@ -2,8 +2,17 @@ package dao.objects;
 
 public class MP3 {
 
+    int id;
     String name;
     String author;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
