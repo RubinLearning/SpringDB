@@ -5,20 +5,24 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/aop
-            http://www.springframework.org/schema/aop/spring-aop.xsd
             http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context.xsd"
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-lazy-init="true">
 
     <context:component-scan base-package="aop.*"/>
     <context:component-scan base-package="dao.*"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.sqlite.JDBC"/>
-        <property name="url" value="jdbc:sqlite:db/testdb.db"/>
-        <property name="username" value=""/>
-        <property name="password" value=""/>
-    </bean>
+    <import resource="transactionContext.xml"/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!--<aop:config>-->
+        <!--<aop:aspect id="aspectCheckTransaction" ref="checkTransaction">-->
+            <!--<aop:pointcut id="insertMethods" expression="execution(* dao.impls.*.insert*(..))"/>-->
+            <!--<aop:before pointcut-ref="insertMethods" method="checkTransactionActive"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
 
 </beans>
